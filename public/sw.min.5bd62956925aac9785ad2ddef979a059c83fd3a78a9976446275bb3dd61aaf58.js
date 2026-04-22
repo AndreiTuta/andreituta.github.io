@@ -1,0 +1,1 @@
+navigator.serviceWorker&&navigator.serviceWorker.register("/pinyin-book/sw.js",{scope:"/pinyin-book/"})

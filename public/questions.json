@@ -1,0 +1,6 @@
+[
+  { "type": "radical", "prompt": "Which radical means \"water\"? (select the radical)", "options": ["氵","口","亻","艹"], "answer": "氵" },
+  { "type": "char", "prompt": "Which character means \"horse\"?", "options": ["马","鸟","鱼","牛"], "answer": "马" },
+  { "type": "radical", "prompt": "Which radical indicates \"heart/feeling\"?", "options": ["忄","扌","饣","氵"], "answer": "忄" },
+  { "type": "char", "prompt": "Which character means \"forest\"?", "options": ["林","森","树","木"], "answer": "林" }
+]
