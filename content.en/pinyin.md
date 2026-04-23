@@ -1,5 +1,5 @@
 ---
-title: "Character & Radical Quiz"
+title: "Pinyin Character & Radical Quiz"
 date: 2026-04-22
 draft: false
 ---
@@ -26,33 +26,48 @@ draft: false
 (() => {
   // Hardcoded questions as JS strings: "type|prompt|opt1;opt2;opt3;opt4|answer"
   const qStrings = [
-    "radical|Which radical means \"water\"? (select the radical)|氵;口;亻;艹|氵",
-    "char|Which character means \"horse\"?|马;鸟;鱼;牛|马",
-    "radical|Which radical indicates \"heart/feeling\"?|忄;扌;饣;氵|忄",
-    "char|Which character means \"forest\"?|林;森;树;木|林",
-    "char|Which character means \"sun/day\"?|日;月;火;土|日",
-    "radical|Which radical indicates \"wood/tree\"?|木;月;宀;女|木",
-    "char|Which character means \"big\"?|大;小;中;上|大",
-    "radical|Which radical indicates \"person\"?|人;口;心;车|人",
-    "char|Which character means \"fire\"?|火;水;土;金|火",
-    "radical|Which radical indicates \"grass/plant\"?|艹;氵;忄;讠|艹",
-    "char|Which character means \"eye\"?|目;耳;口;手|目",
-    "char|Which character means \"mouth\"?|口;目;心;足|口",
-    "radical|Which radical usually shows speech/words?|讠;氵;扌;艹|讠",
-    "char|Which character means \"two\"?|二;三;四;五|二",
-    "radical|Which radical indicates \"metal/metal tool\"?|钅;氵;艹;扌|钅"
+    {"type":"radical","symbol":"氵","meaning":"water"},
+{"type":"radical","symbol":"忄","meaning":"heart/feeling"},
+{"type":"radical","symbol":"木","meaning":"wood/tree"},
+{"type":"radical","symbol":"艹","meaning":"grass/plant"},
+{"type":"radical","symbol":"讠","meaning":"speech/words"},
+{"type":"radical","symbol":"钅","meaning":"metal"},
+{"type":"radical","symbol":"人","meaning":"person"},
+{"type":"radical","symbol":"口","meaning":"mouth"},
+{"type":"char","symbol":"马","meaning":"horse"},
+{"type":"char","symbol":"林","meaning":"forest"},
+{"type":"char","symbol":"日","meaning":"sun/day"},
+{"type":"char","symbol":"大","meaning":"big"},
+{"type":"char","symbol":"火","meaning":"fire"},
+{"type":"char","symbol":"目","meaning":"eye"},
+{"type":"char","symbol":"二","meaning":"two"}
   ];
 
-  // Parse into objects
-  const questions = qStrings.map(s => {
-    const parts = s.split('|');
+
+  // data: items (the JSON array above)
+  function makeQuestion(item, itemsPool, numOptions = 4) {
+    // filter same type for decoys
+    const pool = itemsPool.filter(it => it.type === item.type && it.symbol !== item.symbol);
+    shuffle(pool);
+    const decoys = pool.slice(0, Math.max(0, numOptions - 1));
+    const options = shuffle([item, ...decoys]).map(it => it.symbol);
     return {
-      type: parts[0] || 'char',
-      prompt: parts[1] || '',
-      options: (parts[2] || '').split(';').map(x => x.trim()),
-      answer: parts[3] || ''
+      type: item.type,
+      prompt: item.type === 'radical'
+        ? `Which radical means "${item.meaning}"? (select the radical)`
+        : `Which character means "${item.meaning}"?`,
+      options,
+      answer: item.symbol
     };
-  });
+  }
+
+  function buildQuiz(itemsPool, desiredCount = null) {
+    const candidates = desiredCount ? shuffle(itemsPool.slice()).slice(0, desiredCount) : itemsPool;
+    return candidates.map(it => makeQuestion(it, itemsPool));
+  }
+
+  // Parse into objects
+  const questions = buildQuiz(qStrings)
 
   let idx = 0;
   let score = 0;

@@ -42,19 +42,8 @@ enableGitInfo = false
   weight = 1
 
 [[menu.home]]
-  pageRef = '/docs/example/'
-  weight = 10
-  parent = 'Documentation'
-
-[[menu.home]]
-  name = 'Shortcodes'
-  pageRef = '/docs/shortcodes/buttons/'
-  weight = 20
-  parent = 'Documentation'
-
-[[menu.home]]
-  name = 'Showcases'
-  pageRef = '/showcases/'
+  name = 'Quiz'
+  pageRef = '/pinyin/'
   weight = 2
 
 [[menu.home]]
