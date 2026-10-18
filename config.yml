@@ -1,0 +1,101 @@
+baseURL: "https://localhost:1313/hugo-website/" 
+title: Andrei Tuta
+theme: PaperMod
+
+enableInlineShortcodes: true
+enableRobotsTXT: true
+pagination:
+  pagerSize: 20
+
+taxonomies:
+    tag: tags
+
+menu:
+    main:
+        - name: Home
+          url: /
+          weight: 1
+        - name: Projects
+          url: projects/
+          weight: 2
+        - name: Mandarin Studies
+          url: mandarin/
+          weight: 3
+        # - name: Projects
+          # url: projects/
+          # weight: 4 
+        # - name: Blog
+          # url: https://en.wikipedia.org/wiki/Moritz-Maria_von_Igelfeld_(character)
+          # weight: 6
+
+params:
+    description: "This website hosts Andrei Tuta's projects and contact information."
+    author: Andrei Tuta
+    # googleAnalyticsID: G-XXXXX
+    DateFormat: January 2006
+    defaultTheme: dark
+    hideFooter: false
+    disableThemeToggle: false
+    ShowShareButtons: false
+    ShowReadingTime: false
+    disableSpecial1stPost: true
+    disableAnchoredHeadings: true
+    ShowPostNavLinks: false
+    ShowBreadCrumbs: true
+    ShowCodeCopyButtons: true
+    ShowAllPagesInArchive: false
+    ShowToc: false
+    disableScrollToTop: true
+    TocOpen: true
+    ShowWordCount: false
+    UseHugoToc: false
+    comments: false
+    math: true
+    profileMode:
+          enabled: true
+          title: Andrei Tuta
+          subtitle: "Software Engineer & Tinkerer"
+          imageUrl: picture.jpeg
+          imageWidth: 160
+          imageHeight: 160
+          buttons:
+            - name: Projects
+              url: projects/
+            - name: Mandarin studies 
+              url: mandarin/
+            # - name: Books
+              # url: books/
+            # - name: Courses
+              # url: courses/
+            - name: Tags
+              url: tags/
+            - name: Archive
+              url: archive/
+            # - name: Blog
+              # url: https://en.wikipedia.org/wiki/Moritz-Maria_von_Igelfeld_(character)
+
+    socialIcons:
+        - name: GitHub
+          url: https://github.com/AndreiTuta
+
+    assets:
+        disableScrollBarStyle: true
+    cover:
+        hiddenInList: false
+        hiddenInSingle: true
+    label:
+      text: Andrei Tuta
+      icon: favicon.ico
+      iconHeight: 18
+
+markup:
+    goldmark:
+        renderer:
+            unsafe: true
+    highlight:
+        guessSyntax: true
+        style: autumn 
+    tableOfContents:
+        endLevel: 2
+        ordered: false
+        startLevel: 2
